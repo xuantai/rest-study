@@ -1,0 +1,36 @@
+[33mcommit dec3ba0d447c89ba4f96716d7c830938b487eeac[m
+Author: xuantai <tainxuan@gmail.com>
+Date:   Tue Sep 29 08:29:20 2015 +0000
+
+    ne
+
+[33mcommit e5a81df11959106f95ca869e6311fce8f6f143a8[m
+Merge: 4bd6a94 59d8146
+Author: xuantai <tainxuan@gmail.com>
+Date:   Mon Sep 28 05:17:21 2015 +0000
+
+    vol/01 complete
+
+[33mcommit 4bd6a94c8ae75e4d84bc64288b5f0b873ed57793[m
+Author: xuantai <study@ip-172-31-4-113.ap-northeast-1.compute.internal>
+Date:   Mon Sep 28 04:34:22 2015 +0000
+
+    vol/01 complete
+
+[33mcommit 59d8146ae50bc53ec5cd528231248fd06bbcb530[m
+Author: shimoji.koichi <shimoji.koichi@suzukishouten.co.jp>
+Date:   Fri Jan 23 14:38:24 2015 +0900
+
+    add simple api
+
+[33mcommit d2347296fde983ffb24ad22fc632b91d92d631f7[m
+Author: shimoji.koichi <shimoji.koichi@suzukishouten.co.jp>
+Date:   Fri Jan 23 14:17:24 2015 +0900
+
+    first commmit
+
+[33mcommit f8a689c8f73a32ca6c20095378bf7a5d7a857e1f[m
+Author: suzukishouten-study <study@suzukishouten.co.jp>
+Date:   Fri Jan 23 14:14:21 2015 +0900
+
+    Initial commit
