@@ -1,15 +1,17 @@
-var app = app || {};
-
 //router
-(function(app) {
-	app.TodoRouter = Backbone.Marionette.AppRouter.extend({
-		//コントローラをインスタンス化
-		controller: new app.TodoController(),
-		//ルーティング設定
-		appRoutes : {
-			'' 					: 'todoLists',
-			'todo-lists' 		: 'todoLists',
-			'todo-lists/:id' 	: 'todoDetail'
-		},
-	});
-})(app);
+console.log('load router');
+define(function(require) {
+    console.log('run router');
+    var TodoController = require('routers/controller');
+    var TodoRouter = Marionette.AppRouter.extend({
+        //khởi tạo controller
+        controller: new TodoController(),
+        //Cấu hình routing
+        appRoutes : {
+            ''                  : 'todoLists',
+            'todo-lists'        : 'todoLists',
+            'todo-lists/:id'    : 'todoDetail'
+        },
+    });
+    return TodoRouter;
+});

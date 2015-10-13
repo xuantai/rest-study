@@ -1,21 +1,24 @@
-var app = app || {};
-
 //controller
-(function(app) {
-	app.TodoController = Backbone.Marionette.Controller.extend({
+console.log('load controller');
+define(function() {
+	console.log('run controller');
+	var TodoController = Marionette.Controller.extend({
 
 		todoLists : function() {
-			//Todoレイアウト用ビューにルーティング
-			this.nextView(app.TodoLayoutView);
+			//Routing tới view cho Todo layout
+			this.nextView('views/todo-layout-view');
 		},
 
 		todoDetail : function(id) {
-			this.nextView(app.TodoDetailLayoutView, {modelId : id});
+			this.nextView('views/todo-detail-layout-view', {modelId : id});
 		},
 
-		nextView : function(View, option) {
-			app.application.mainRegion.show(new View(option));
+		nextView : function(viewPath, option) {
+			require([viewPath], function(View){
+				window.application.mainRegion.show(new View(option));
+			});
 		},
 
 	});
-})(app);
+	return TodoController;
+});

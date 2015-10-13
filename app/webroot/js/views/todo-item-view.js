@@ -1,8 +1,5 @@
-var app = app || {};
-
-//Todo一覧の1件表示用ビュー
-(function(app) {
-	app.TodoItemView = Backbone.Marionette.ItemView.extend({
+define(function() {
+	var TodoItemView = Backbone.Marionette.ItemView.extend({
 		//DOMに要素追加のタグ名
 		tagName : 'tr',
 
@@ -22,15 +19,18 @@ var app = app || {};
 			'click @ui.removeLink' : 'onRemoveClick',
 		},
 
-		onStatusToggleClick : function(e) {
+		onStatusToggleClick : function() {
 			this.model.toggle();
 		},
 
-		onRemoveClick : function(e) {
-			this.model.destroy({
-				wait : true
-			});
+		onRemoveClick : function() {
+			if (confirm ("Are you sure to delete this ToDo?")) {
+				this.model.destroy({
+					wait: true
+				});
+			}
 		},
 
 	});
-})(app);
+    return TodoItemView;
+});

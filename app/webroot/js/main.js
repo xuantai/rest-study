@@ -1,7 +1,14 @@
-var app = app || {};
-
-//開始
-(function(app) {
-	app.application = new app.Application();
-	app.application.start();
-})(app);
+//Bắt đầu
+console.log('load main');
+require([
+        'marionette'
+    ],
+    function(){
+        console.log('run main');
+        require(['app'], function(Application){
+            console.log('run main2');
+            window.application = new Application();
+            window.application.start();
+            console.log('app start');
+        });
+    });
