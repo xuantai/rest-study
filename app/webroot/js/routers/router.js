@@ -8,6 +8,7 @@ define(function(require) {
         controller: new TodoController(),
         //Cấu hình routing
         appRoutes : {
+            'login'             : 'login',
             ''                  : 'todoLists',
             'todo-lists'        : 'todoLists',
             'todo-lists/:id'    : 'todoDetail'

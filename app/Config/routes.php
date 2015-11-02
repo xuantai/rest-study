@@ -24,23 +24,56 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
-	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
+Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */
-	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
  */
-	CakePlugin::routes();
+CakePlugin::routes();
 
 /*
  * API
  */
-Router::mapResources(array (
-	'todo_lists',
+// Đăng nhập
+Router::connect('/users/login', array(
+    'controller' => 'users',
+    'action' => 'login',
+    'method' => array(
+        'POST'
+    )
+));
+
+// Đăng xuất
+Router::connect('/users/logout', array(
+    'controller' => 'users',
+    'action' => 'logout',
+    'method' => 'POST'
+));
+
+// Login check (kiểm tra thông tin đăng nhập)
+Router::connect('/users/loggedin', array(
+    'controller' => 'users',
+    'action' => 'loggedIn',
+    'method' => 'GET'
+));
+
+// Đăng ký
+Router::connect('/users/signup', array(
+    'controller' => 'users',
+    'action' => 'signUp',
+    'method' => array(
+        'POST'
+    )
+));
+
+
+Router::mapResources(array(
+    'todo_lists',
 ));
 Router::parseExtensions('json');
 
@@ -48,4 +81,4 @@ Router::parseExtensions('json');
  * Load the CakePHP default routes. Only remove this if you do not want to use
  * the built-in default routes.
  */
-	require CAKE . 'Config' . DS . 'routes.php';
+require CAKE . 'Config' . DS . 'routes.php';

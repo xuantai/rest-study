@@ -13,6 +13,8 @@ var require = {
         'underscore' : 'lib/underscore-min',
         'backbone' : 'lib/backbone-min',
         'marionette' : 'lib/backbone.marionette.min',
+        'bootbox' : 'lib/bootbox.min',
+        'bootstrap' : 'lib/bootstrap.min'
     },
 
     // Xác định sự phụ thuộc
@@ -28,9 +30,18 @@ var require = {
             deps : ['jquery', 'underscore'],
             exports : 'Backbone'
         },
+
         'marionette' : {
             deps : ['backbone'],
             exports : 'Marionette'
+        },
+        'bootbox' : {
+            deps : ['jquery' , 'bootstrap'],
+            exports : 'bootbox'
+        },
+        'bootstrap' : {
+            deps : ['jquery'],
+            exports : 'bootstrap'
         },
     }
 };
