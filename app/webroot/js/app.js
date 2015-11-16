@@ -1,6 +1,7 @@
 //Application
 console.log('load app');
 define(function (require) {
+    var bootbox = require('bootbox');
     console.log('run app');
     var Router = require('routers/router');
     var UserModel = require('models/user-model');
@@ -64,12 +65,25 @@ define(function (require) {
                 this.clearLoginUser();
                 // Nếu unauthenticated thì chuyển về màn hình login
                 Backbone.history.navigate('#login', {trigger: true, replace: true});
-            } else if (xhr.status >= 400 && xhr.status < 500) {
+            } else if (xhr.status === 400) {
+                if (xhr.responseJSON) {
+                    var errors = xhr.responseJSON.errors;
+                    var msg = '';
+                    for (var key in errors) {
+                        for (var idx in errors[key]) {
+                            msg = msg + errors[key][idx] + '\n';
+                         }
+                    }
+                    bootbox.alert(msg);
+                } else {
+                    bootbox.alert(message);
+                }
+            } else if (xhr.status > 400 && xhr.status < 500) {
                 //Hiển thị các lỗi ClientError
-                alert(message);
+                bootbox.alert(message);
             } else if (xhr.status >= 500 && xhr.status < 600) {
                 //Hiển thị các lỗi ServerError
-                alert(message);
+                bootbox.alert(message);
             }
         },
 

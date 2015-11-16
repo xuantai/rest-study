@@ -1,12 +1,14 @@
 define(function (require) {
     var bootbox = require('bootbox');
     var TodoItemView = require('views/todo-item-view');
+    var TodoModel = require('models/todo-model');
     var TodoCompositeView = Backbone.Marionette.CompositeView.extend({
         template: '#todo-composite-template',
 
         childView: TodoItemView,
 
         childViewContainer: 'tbody',
+        newTodoModel : new TodoModel(),
 
         ui: {
             addTodo: '#addTodo',
@@ -29,9 +31,8 @@ define(function (require) {
 
         initialize: function (options) {
             _.bindAll(this, 'onCreatedSuccess');
-            console.log("get userlist");
-            console.log(options.userList);
             this.userList = options.userList;
+            this.listenTo(this.newTodoModel, 'invalid', this.renderErrorMessage);
 
 
         },
@@ -83,20 +84,14 @@ define(function (require) {
 
 
         onCreateTodo: function () {
-
-            this.contentLength = this.ui.newTodo.val().length;
-            if (this.contentLength > 10) {
-                this.collection.create(this.newAttributes(), {
+            this.newTodoModel.clear({silent : true});
+                       this.newTodoModel.set(this.newAttributes());
+                      this.collection.create(this.newTodoModel, {
                     silent: true,
                     success: this.onCreatedSuccess
                 });
                 this.ui.newTodo.val('');
                 return true;
-            } else {
-                bootbox.alert("Length of content must be more than 10 characters");
-                return false;
-            }
-
 
         },
 
@@ -143,6 +138,13 @@ define(function (require) {
         },
 
 
+              renderErrorMessage : function(errors){
+                  var message = '';
+                  for(var key in errors.validationError){
+                           message += errors.validationError[key];
+                      }
+                  bootbox.alert(message);
+              }
 
 
     });

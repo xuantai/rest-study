@@ -26,9 +26,8 @@ define(function () {
         //初期化
         initialize: function (options) {
             _.bindAll(this, 'onSaveSuccess');
-            console.log("get userlist in deltail");
-            console.log(options.userList);
             this.userList = options.userList;
+            this.listenTo(this.model, 'invalid', this.renderErrorMessage);
         },
 
         onRender: function () {
@@ -79,10 +78,11 @@ define(function () {
             var todoString = this.ui.todoStatus.val();
            var assigneeId = this.ui.userList.val();    // 担当者
             if (todoString.length > 10) {
-                this.model.save({
+                this.model.set({
                     todo: todoString,
                     assignee : assigneeId
-                }, {
+                });
+               this.model.save(null,{
                     silent: true,
                     success: this.onSaveSuccess,
                 });
@@ -108,6 +108,19 @@ define(function () {
         //TODOリスト画面に戻る
         backTodoLists: function () {
             Backbone.history.navigate('#todo-lists', true);
+
+
+        },
+
+               //Hiển thị lỗi
+                   renderErrorMessage : function(errors){
+                   var message = '';
+                   for(var key in errors.validationError){
+                           message += errors.validationError[key];
+                       }
+                   alert(message);
+
+
         }
 
     });

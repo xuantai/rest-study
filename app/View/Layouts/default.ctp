@@ -2,24 +2,32 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Application CSS -->
+    <link href="css/app.css" rel="stylesheet">
 
     <title>TODO List</title>
 </head>
 <body>
-<div class="container">
-    <div id="header"></div>
-    <!-- コンテンツ -->
-    <div id="main"></div>
-    <script type="text/template" id="header-template">
-        <div class="page-header">
-            <h3>
-                <small>Welcome：</small>
-                <%- username %>（<%- name %>）　
-                <button class="btn btn-default" type="button" id="logout">Log Out</button>
-            </h3>
-        </div>
 
+    <!-- ヘッダ -->
+    <div id="header" class="container"></div>
+    <!-- コンテンツ -->
+    <div id="main" class="container"></div>
+
+    <!-- ヘッダのテンプレート -->
+    <script type="text/template" id="header-template">
+        <div>
+            <div class="row header">
+                <div class="form-group col-xs-12">
+                    <form class="form-inline pull-right">
+                        <label for="logout"><%- username %>（<%- name %>）</label>
+                        <input type="button" class="btn btn-default btn-sm" id="logout" value="Log out">
+                    </form>
+                </div>
+            </div>
+        </div>
     </script>
     <!-- TODO一覧表示のレイアウトテンプレート -->
     <script type="text/template" id="todo-layout-template">
@@ -69,50 +77,46 @@
         </div>
         <br>
         <div class="row">
-            <table class="table table-hover table-striped">
-                <thead>
-                <tr>
-
-                    <th class="col-md-1">Status</th>
-                    <th class="col-md-6">Todo</th>
-                    <th class="col-md-1">Owner</th>
-                    <th class="col-md-1">Assignee</th>
-                    <th class="col-md-3">Action</th>
-                </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+            <div class="col-xs-12">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr class="success">
+                        <th class="col-sm-6" colspan="2">ToDo</th>
+                        <th class="col-sm-2">Owner</th>
+                        <th class="col-sm-2">Assignee</th>
+                        <th class="col-sm-2" colspan="2"></th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
     </script>
 
-    <!-- TODO一行分のテンプレート（上のtbody部分に挿入される） -->
     <script type="text/template" id="todo-item-template">
-
-
-        <td><input type="checkbox" class="toggle" <%- status === '1' ? 'checked' : '' %>></td>
-        <td style="margin:0px">
-            <span class="todo-edit" style="margin:0px"><%- todo %></span>
+        <td colspan="2">
+            <div class="checkbox">
+                <label class="todo-item-text">
+                    <input type="checkbox" class="toggle" <%- status === '1' ? 'checked' : '' %>><%- todo %>
+                </label>
+            </div>
         </td>
-
-
         <td>
             <span><%- Owner.name %></span>
         </td>
-
         <td>
             <span><%- Assignee.name %></span>
         </td>
-
-        <td>
-            <button class="btn btn-success" id="detail-link" onclick="window.location.href='#todo-lists/<%- id %>'">
-                Detail
-            </button>
-            <button class="btn btn-danger" id="remove-link">Delete</button>
-
-
+        <td class="text-center">
+            <div class="btn-group">
+                <a class="btn btn-danger remove-link todo-item-button" href="#" id="remove-link">Delete</a>
+            </div>
         </td>
-
-
+        <td>
+            <div class="btn-group">
+                <a class="btn btn-success detail-link todo-item-button" href="#todo-lists/<%- id %>" id="detail-link">Detail</a>
+            </div>
+        </td>
     </script>
 
     <!-- 詳細画面のレイアウトテンプレート -->

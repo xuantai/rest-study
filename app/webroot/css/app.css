@@ -1,0 +1,36 @@
+/* Lower gripping the inside of inline frames (bootstrap setting overwritten)*/
+@media (min-width: 768px) {
+    .form-inline .input-group {
+        display: inline-block;
+        vertical-align: bottom;
+    }
+}
+
+/* Chi?u r?ng buttons c?a Todo tren danh s?ch */
+.todo-item-button {
+    width: 70px;
+}
+
+/* Chi?u r?ng c?c button kh?c */
+.todo-action-button {
+    width: 120px;
+}
+
+/* T?t c? c?c ???ng th?ng ? table, c?n gi?a theo chi?u d?c*/
+.table > tbody > tr > td {
+    word-break: break-all;
+    vertical-align: middle;
+}
+
+/* C? ch? c?a TODO cho l?n large Todo*/
+.todo-item-text {
+    font-size: large;
+}
+
+/* ヘッダ部分のレイアウト */
+.header {
+    margin: 5px;
+    padding: 10px 10px 0px 10px;
+    background-color: darkslategray;
+    color: lightcyan;
+}

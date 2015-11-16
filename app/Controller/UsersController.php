@@ -28,9 +28,9 @@ class UsersController extends AppController
         if ($user) {
             if ($user['username'] === $this->request->data['username']) {
                 $res['User'] = $user;
-                $res['message'] = "ログイン済みです";
+                $res['message'] = "Is already logged";
             } else {
-                $res['message'] = "別のユーザがログイン済みです";
+                $res['message'] = "Another user is logged in";
             }
         } else {
             $this->request->data['User']['username'] = $this->request->data['username'];

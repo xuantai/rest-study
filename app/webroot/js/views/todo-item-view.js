@@ -7,6 +7,7 @@ define(function (require) {
         //テンプレート
         template: '#todo-item-template',
 
+
         ui: {
             checkBox: '.toggle',
             removeLink: '#remove-link',
